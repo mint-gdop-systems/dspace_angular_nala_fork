@@ -1,8 +1,9 @@
 import { AsyncPipe } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateModule } from '@ngx-translate/core';
+import { Observable } from 'rxjs';
 import { ThemedLangSwitchComponent } from 'src/app/shared/lang-switch/themed-lang-switch.component';
 
 import { ContextHelpToggleComponent } from '../../../../app/header/context-help-toggle/context-help-toggle.component';
@@ -13,10 +14,8 @@ import { ImpersonateNavbarComponent } from '../../../../app/shared/impersonate-n
 
 @Component({
   selector: 'ds-themed-header',
-  // styleUrls: ['header.component.scss'],
-  styleUrls: ['../../../../app/header/header.component.scss'],
-  // templateUrl: 'header.component.html',
-  templateUrl: '../../../../app/header/header.component.html',
+  styleUrls: ['header.component.scss'],
+  templateUrl: 'header.component.html',
   imports: [
     AsyncPipe,
     ContextHelpToggleComponent,
@@ -29,5 +28,11 @@ import { ImpersonateNavbarComponent } from '../../../../app/shared/impersonate-n
     TranslateModule,
   ],
 })
-export class HeaderComponent extends BaseComponent {
+export class HeaderComponent extends BaseComponent implements OnInit {
+  public menuCollapsed$: Observable<boolean>;
+
+  ngOnInit(): void {
+    super.ngOnInit();
+    this.menuCollapsed$ = this.menuService.isMenuCollapsed(this.menuID);
+  }
 }

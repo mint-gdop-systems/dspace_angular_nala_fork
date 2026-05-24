@@ -1,0 +1,54 @@
+@import '../../../../app/login-page/login-page.component.scss';
+
+:host ::ng-deep {
+  // Hide the logo on all screen sizes
+  .login-logo {
+    display: none !important;
+  }
+
+  // Styles for the login form on the standalone login page
+  .form-login {
+    input,
+    input[type="email"],
+    input[type="password"],
+    input[type="text"],
+    .form-control {
+      background-color: #ffffff !important;
+      color: #000000 !important;
+      border: 1px solid #ced4da !important;
+
+      &::placeholder {
+        color: #6c757d !important;
+      }
+
+      &:focus,
+      &:active,
+      &:-webkit-autofill,
+      &:-webkit-autofill:hover,
+      &:-webkit-autofill:focus {
+        background-color: #ffffff !important;
+        color: #000000 !important;
+        border-color: #ced4da !important;
+        -webkit-text-fill-color: #000000 !important;
+        box-shadow: none !important;
+        outline: none !important;
+      }
+    }
+
+    button[type="submit"],
+    .btn-primary {
+      background-color: #0d1721 !important;
+      color: #ffffff !important;
+      border: 1px solid #0d1721 !important;
+      font-weight: 600 !important;
+      padding: 0.5rem 1rem !important;
+
+      &:hover,
+      &:focus {
+        background-color: #14202c !important;
+        color: #ffffff !important;
+        border-color: #1e2d3b !important;
+      }
+    }
+  }
+}

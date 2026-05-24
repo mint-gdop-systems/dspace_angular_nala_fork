@@ -1,0 +1,17 @@
+@import '../../../../app/footer/footer.component.scss';
+
+:host ::ng-deep {
+  footer {
+    background-color: #0d1721 !important;
+    border-top: 1px solid rgba(164, 179, 198, 0.15) !important;
+
+    .top-footer {
+      background-color: #0d1721 !important;
+      border-bottom: 1px solid rgba(164, 179, 198, 0.1) !important;
+    }
+
+    .bottom-footer {
+      background-color: #0d1721 !important;
+    }
+  }
+}

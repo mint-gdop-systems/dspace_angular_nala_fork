@@ -12,8 +12,8 @@ import { ThemedNavbarComponent } from '../../../../app/navbar/themed-navbar.comp
   selector: 'ds-themed-header-navbar-wrapper',
   // styleUrls: ['./header-navbar-wrapper.component.scss'],
   styleUrls: ['../../../../app/header-nav-wrapper/header-navbar-wrapper.component.scss'],
-  // templateUrl: './header-navbar-wrapper.component.html',
-  templateUrl: '../../../../app/header-nav-wrapper/header-navbar-wrapper.component.html',
+  templateUrl: './header-navbar-wrapper.component.html',
+  // templateUrl: '../../../../app/header-nav-wrapper/header-navbar-wrapper.component.html',
   imports: [
     AsyncPipe,
     NgClass,

@@ -10,8 +10,8 @@ import { FooterComponent as BaseComponent } from '../../../../app/footer/footer.
 
 @Component({
   selector: 'ds-themed-footer',
-  // styleUrls: ['./footer.component.scss'],
-  styleUrls: ['../../../../app/footer/footer.component.scss'],
+  styleUrls: ['./footer.component.scss'],
+  // styleUrls: ['../../../../app/footer/footer.component.scss'],
   // templateUrl: './footer.component.html'
   templateUrl: '../../../../app/footer/footer.component.html',
   imports: [

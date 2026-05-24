@@ -420,6 +420,9 @@ export class DefaultAppConfig implements AppConfig {
     // },
 
     {
+      name: 'custom',
+    },
+    {
       // The default dspace theme
       name: 'dspace',
       // Whenever this theme is active, the following tags will be injected into the <head> of the page.

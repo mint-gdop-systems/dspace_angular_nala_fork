@@ -1,0 +1,382 @@
+// Force global styles to override DSpace components
+:host ::ng-deep {
+  header {
+    background-color: #0d1721 !important;
+    border-bottom: 1px solid rgba(164, 179, 198, 0.2) !important;
+    box-shadow: none !important;
+    position: relative !important;
+    z-index: 1050 !important;
+    overflow: visible !important;
+  }
+
+  .navbar-brand {
+    margin: 0.5rem 0 !important;
+    padding: 0 !important;
+  }
+
+  .site-logo {
+    color: #C4C8CC !important;
+    font-size: 1.5rem !important;
+    font-weight: 500 !important;
+    letter-spacing: -0.5px !important;
+    text-transform: uppercase !important;
+    text-decoration: none !important;
+  }
+
+  .header-link {
+    color: #C4C8CC !important;
+    text-decoration: none !important;
+    font-size: 0.95rem !important;
+    font-weight: 400 !important;
+    white-space: nowrap !important;
+    transition: color 0.2s ease-in-out !important;
+
+    &:hover,
+    &:focus {
+      color: #ffffff !important;
+      text-decoration: none !important;
+    }
+  }
+
+  [role="toolbar"] {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 0.75rem !important;
+
+    &>* {
+      display: flex !important;
+      align-items: center !important;
+    }
+  }
+
+  // Target all possible DSpace navigation elements
+  .navbar,
+  .navbar-nav,
+  .nav-item,
+  .nav-link,
+  .dropdown,
+  .dropdown-toggle,
+  .btn,
+  .btn-link,
+  ds-search-navbar button,
+  ds-lang-switch button,
+  ds-context-help-toggle button,
+  ds-auth-nav-menu button,
+  ds-impersonate-navbar button,
+  [role="toolbar"] * {
+    background-color: transparent !important;
+    color: #C4C8CC !important;
+    border: none !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  // Override all possible states
+  .nav-link:hover,
+  .nav-link:focus,
+  .nav-link:active,
+  .dropdown-toggle:hover,
+  .dropdown-toggle:focus,
+  .dropdown-toggle:active,
+  .btn:hover,
+  .btn:focus,
+  .btn:active,
+  .btn-link:hover,
+  .btn-link:focus,
+  .btn-link:active {
+    color: #C4C8CC !important;
+    background-color: transparent !important;
+    border: none !important;
+    outline: none !important;
+  }
+
+  // Override dropdown menus
+  .dropdown-menu {
+    background-color: #14202c !important;
+    border: 1px solid rgba(164, 179, 198, 0.15) !important;
+    border-radius: 6px !important;
+    margin-top: 4px !important;
+    padding: 0.25rem 0 !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4) !important;
+    z-index: 9999 !important;
+    position: absolute !important;
+  }
+
+  .dropdown-item {
+    color: #C4C8CC !important;
+    padding: 0.5rem 1rem !important;
+    background: transparent !important;
+    border: none !important;
+  }
+
+  .dropdown-item:hover,
+  .dropdown-item:focus,
+  .dropdown-item:active {
+    background-color: rgba(255, 255, 255, 0.05) !important;
+    color: #ffffff !important;
+  }
+
+  .dropdown-toggle::after {
+    display: inline-block;
+    margin-left: 0.255em;
+    vertical-align: 0.255em;
+    content: "";
+    border-top: 0.3em solid;
+    border-right: 0.3em solid transparent;
+    border-bottom: 0;
+    border-left: 0.3em solid transparent;
+    color: #C4C8CC !important;
+  }
+
+  // Override search navbar
+  ds-search-navbar {
+    form {
+      background: transparent !important;
+    }
+    input {
+      background-color: transparent !important;
+      border: none !important;
+      color: #C4C8CC !important;
+    }
+    button {
+      background-color: transparent !important;
+      border: none !important;
+      color: #C4C8CC !important;
+
+      &:hover,
+      &:focus {
+        background-color: transparent !important;
+        color: #ffffff !important;
+      }
+    }
+
+    input::placeholder {
+      color: #999 !important;
+    }
+  }
+
+  // Override toggler icon
+  .navbar-toggler {
+    border: none !important;
+    padding: 0 !important;
+
+    .toggler-icon,
+    .fas,
+    .fa-bars {
+      color: #C4C8CC !important;
+    }
+
+    &:hover .toggler-icon,
+    &:focus .toggler-icon {
+      color: #C4C8CC !important;
+    }
+  }
+
+  // Remove any lingering background colors
+  .bg-dark,
+  .bg-light,
+  .bg-primary,
+  [class*="bg-"] {
+    background-color: #0d1721 !important;
+  }
+
+  // Override all inputs and buttons for visibility
+  input,
+  input[type="email"],
+  input[type="password"],
+  input[type="text"],
+  .form-control {
+    color: #C4C8CC !important;
+    background-color: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid #333 !important;
+    margin-bottom: 0.75rem !important; // Add vertical gap
+
+    &::placeholder {
+      color: #666 !important;
+    }
+
+    &:focus,
+    &:active,
+    &:-webkit-autofill,
+    &:-webkit-autofill:hover,
+    &:-webkit-autofill:focus {
+      background-color: rgba(255, 255, 255, 0.1) !important;
+      border-color: #C4C8CC !important;
+      color: #C4C8CC !important;
+      box-shadow: none !important;
+      outline: none !important;
+      -webkit-text-fill-color: #C4C8CC !important;
+      transition: background-color 5000s ease-in-out 0s;
+    }
+  }
+
+  // Specific styling for the login form inputs to have completely dark text
+  .form-login {
+    input,
+    input[type="email"],
+    input[type="password"],
+    input[type="text"],
+    .form-control {
+      background-color: #ffffff !important;
+      color: #000000 !important;
+      border: 1px solid #ced4da !important;
+
+      &::placeholder {
+        color: #6c757d !important;
+      }
+
+      &:focus,
+      &:active,
+      &:-webkit-autofill,
+      &:-webkit-autofill:hover,
+      &:-webkit-autofill:focus {
+        background-color: #ffffff !important;
+        color: #000000 !important;
+        border-color: #C4C8CC !important;
+        -webkit-text-fill-color: #000000 !important;
+        transition: background-color 5000s ease-in-out 0s;
+        box-shadow: none !important;
+        outline: none !important;
+      }
+    }
+  }
+
+  // Specific styling for action buttons (like Login)
+  button[type="submit"],
+  .btn-primary,
+  .btn-secondary {
+    background-color: #C4C8CC !important;
+    color: #0d1721 !important;
+    border: 1px solid transparent !important;
+    font-weight: 600 !important;
+    padding: 0.5rem 1rem !important;
+
+    &:hover,
+    &:focus {
+      background-color: #0d1721 !important;
+      color: #C4C8CC !important;
+      border: 1px solid #C4C8CC !important;
+    }
+  }
+
+  // Navigation buttons should remain transparent
+  .nav-link,
+  .navbar-toggler,
+  [role="toolbar"] button:not([type="submit"]):not(.btn-primary) {
+    background-color: transparent !important;
+    color: #C4C8CC !important;
+  }
+
+  // Override any DSpace specific classes
+  .navbar-section,
+  .expandable-navbar-section,
+  .menu-section,
+  .ds-menu-item {
+    color: #C4C8CC !important;
+    background: transparent !important;
+  }
+
+  // HIDE THE DEFAULT SIDEBAR & NAVBAR SO ONLY OUR DIRECT LINK HEADER SHOWS
+  ds-themed-admin-sidebar,
+  ds-admin-sidebar,
+  ds-themed-navbar,
+  ds-navbar,
+  .admin-sidebar,
+  .navbar-container,
+  #admin-sidebar,
+  #sidebar-header-container,
+  .sidebar-collapsible-element-outer-wrapper {
+    display: none !important;
+    height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  // Ensure the main wrapper and breadcrumbs don't show white background
+  .outer-wrapper,
+  .inner-wrapper,
+  main,
+  ds-themed-breadcrumbs,
+  .breadcrumb,
+  ds-home-page,
+  .ds-home-page {
+    background-color: #0d1721 !important;
+    border: none !important;
+    color: #C4C8CC !important;
+    padding-top: 0 !important; // Remove spacing between header and content
+    margin-top: 0 !important;
+  }
+
+  // Collapsible Mobile Menu Styling
+  .mobile-nav-menu {
+    display: flex !important;
+    flex-direction: column !important;
+    border-top: 1px solid rgba(164, 179, 198, 0.15) !important;
+    margin-top: 0.5rem !important;
+    padding-top: 0.5rem !important;
+    width: 100% !important;
+
+    .mobile-nav-link {
+      display: flex !important;
+      align-items: center !important;
+      padding: 0.85rem 1rem !important;
+      font-size: 1rem !important;
+      font-weight: 400 !important;
+      color: #C4C8CC !important;
+      text-decoration: none !important;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+      border-radius: 6px !important;
+      margin-bottom: 2px !important;
+      transition: background-color 0.2s ease, color 0.2s ease, padding-left 0.2s ease !important;
+
+      i {
+        font-size: 0.85rem !important;
+        color: #7a8c9e !important;
+        width: 1.25rem !important;
+        text-align: center !important;
+        transition: color 0.2s ease !important;
+      }
+
+      &:hover,
+      &:focus {
+        color: #ffffff !important;
+        background-color: rgba(255, 255, 255, 0.06) !important;
+        padding-left: 1.25rem !important;
+
+        i {
+          color: #ffffff !important;
+        }
+      }
+
+      &:last-child {
+        border-bottom: none !important;
+      }
+    }
+
+    // Centered utilities row (search, lang, login)
+    .mobile-nav-utilities {
+      display: flex !important;
+      flex-direction: row !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 0.5rem !important;
+      padding: 0.75rem 0 !important;
+      margin-bottom: 0.5rem !important;
+      border-bottom: 1px solid rgba(164, 179, 198, 0.12) !important;
+      flex-wrap: wrap !important;
+    }
+  }
+
+  // Hide the top-bar toolbar items on mobile (they are shown in the mobile drawer instead)
+  @media (max-width: 767.98px) {
+    .header-toolbar-top {
+      display: none !important;
+    }
+  }
+}
+
+// Global body background color override
+:host-context(body) {
+  background-color: #0d1721 !important;
+}

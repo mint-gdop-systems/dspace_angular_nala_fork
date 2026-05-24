@@ -1,0 +1,137 @@
+<header>
+  <div class="container">
+    <!-- Top bar: logo + desktop nav + toolbar + hamburger -->
+    <div class="d-flex flex-row flex-wrap justify-content-between align-items-center">
+      <div class="d-flex flex-row align-items-center">
+        <a
+          class="navbar-brand my-2 me-4"
+          routerLink="/home"
+          role="button"
+          tabindex="0"
+        >
+          <img
+            src="/assets/images/dspace-logo-old.png"
+            alt="Logo"
+            class="me-2"
+            style="height: 80px"
+          />
+          <span class="site-logo">NALA</span>
+        </a>
+
+        <div
+          class="header-nav-links d-none d-lg-flex align-items-center gap-4 ms-5"
+        >
+          <a class="header-link" routerLink="/community-list"
+            >Communities &amp; Collections</a
+          >
+          <div ngbDropdown class="d-inline-block">
+            <a
+              class="header-link dropdown-toggle"
+              id="browseDropdown"
+              ngbDropdownToggle
+              role="button"
+              tabindex="0"
+            >
+              All of DSpace
+            </a>
+            <div
+              ngbDropdownMenu
+              aria-labelledby="browseDropdown"
+              class="dropdown-menu"
+            >
+              <a
+                ngbDropdownItem
+                class="dropdown-item"
+                routerLink="/browse/title"
+                >By Title</a
+              >
+              <a
+                ngbDropdownItem
+                class="dropdown-item"
+                routerLink="/browse/author"
+                >By Author</a
+              >
+              <a
+                ngbDropdownItem
+                class="dropdown-item"
+                routerLink="/browse/dateissued"
+                >By Date Issued</a
+              >
+              <a
+                ngbDropdownItem
+                class="dropdown-item"
+                routerLink="/browse/subject"
+                >By Subject</a
+              >
+            </div>
+          </div>
+          <a class="header-link" routerLink="/statistics">Statistics</a>
+        </div>
+      </div>
+
+      <div class="d-flex flex-row align-items-center flex-shrink-0 gap-3">
+        <div class="header-toolbar-top d-flex flex-row align-items-center gap-3">
+          <ds-search-navbar></ds-search-navbar>
+          <div
+            class="d-flex align-items-center gap-2"
+            role="toolbar"
+            [attr.aria-label]="'nav.user.description' | translate"
+          >
+            <ds-lang-switch></ds-lang-switch>
+            <ds-context-help-toggle></ds-context-help-toggle>
+            <ds-auth-nav-menu></ds-auth-nav-menu>
+            <ds-impersonate-navbar></ds-impersonate-navbar>
+          </div>
+        </div>
+        @if (isMobile$ | async) {
+          <button
+            class="navbar-toggler px-0"
+            type="button"
+            (click)="toggleNavbar()"
+            aria-controls="collapsingNav"
+            [attr.aria-expanded]="(menuCollapsed$ | async) !== true"
+            [attr.aria-label]="'nav.toggle' | translate"
+          >
+            <span
+              class="fas fa-bars fa-fw toggler-icon"
+              aria-hidden="true"
+            ></span>
+          </button>
+        }
+      </div>
+    </div>
+
+    <!-- Collapsible Mobile Navigation Menu (full-width, below the top bar) -->
+    @if ((isMobile$ | async) && (menuCollapsed$ | async) !== true) {
+      <nav class="mobile-nav-menu" id="collapsingNav" aria-label="Mobile navigation">
+        <!-- Centered utility bar: search, language, login -->
+        <div class="mobile-nav-utilities">
+          <ds-search-navbar></ds-search-navbar>
+          <ds-lang-switch></ds-lang-switch>
+          <ds-context-help-toggle></ds-context-help-toggle>
+          <ds-auth-nav-menu></ds-auth-nav-menu>
+          <ds-impersonate-navbar></ds-impersonate-navbar>
+        </div>
+        <!-- Nav links -->
+        <a class="mobile-nav-link" routerLink="/community-list" (click)="toggleNavbar()">
+          <i class="fas fa-layer-group me-3"></i>Communities &amp; Collections
+        </a>
+        <a class="mobile-nav-link" routerLink="/browse/title" (click)="toggleNavbar()">
+          <i class="fas fa-heading me-3"></i>Browse by Title
+        </a>
+        <a class="mobile-nav-link" routerLink="/browse/author" (click)="toggleNavbar()">
+          <i class="fas fa-user me-3"></i>Browse by Author
+        </a>
+        <a class="mobile-nav-link" routerLink="/browse/dateissued" (click)="toggleNavbar()">
+          <i class="fas fa-calendar-alt me-3"></i>Browse by Date Issued
+        </a>
+        <a class="mobile-nav-link" routerLink="/browse/subject" (click)="toggleNavbar()">
+          <i class="fas fa-tags me-3"></i>Browse by Subject
+        </a>
+        <a class="mobile-nav-link" routerLink="/statistics" (click)="toggleNavbar()">
+          <i class="fas fa-chart-bar me-3"></i>Statistics
+        </a>
+      </nav>
+    }
+  </div>
+</header>
