@@ -45,6 +45,18 @@
 
   "access-status.unknown.listelement.badge": "Unknown",
 
+  "menu.section.analytics": "Analytics Dashboard",
+  "admin.dashboard.title": "Analytics Dashboard",
+  "admin.dashboard.user-dashboard": "User Statistics",
+  "admin.dashboard.admin-dashboard": "System Statistics",
+  "admin.dashboard.refresh": "Refresh Data",
+  "admin.dashboard.collections": "Total Collections",
+  "admin.dashboard.archived-items": "Archived Items",
+  "admin.dashboard.workflow-items": "Workflow Items",
+  "admin.dashboard.statistics.collections": "Collection-wise Submission Statistics",
+  "admin.dashboard.collection-name": "Collection Name",
+  "admin.dashboard.no-data": "No collection statistics available.",
+
   "admin.curation-tasks.breadcrumbs": "System curation tasks",
 
   "admin.curation-tasks.title": "System curation tasks",
