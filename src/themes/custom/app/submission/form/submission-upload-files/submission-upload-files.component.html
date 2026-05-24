@@ -1,0 +1,18 @@
+<div class="row g-3">
+  <!-- Drag-and-drop file uploader at the top of the right column -->
+  <div class="col-12 mb-4">
+    @if (uploadFilesOptions.url) {
+    <ds-uploader [dropMsg]="dropMsg" [dropOverDocumentMsg]="dropOverDocumentMsg"
+      [enableDragOverDocument]="enableDragOverDocument" [onBeforeUpload]="onBeforeUpload"
+      [uploadFilesOptions]="uploadFilesOptions" (onCompleteItem)="onCompleteItem($event)"
+      (onUploadError)="onUploadError()"></ds-uploader>
+    }
+  </div>
+
+  <!-- Interactive file list dropdown and preview viewer -->
+  <div class="col-12">
+    <ds-file-preview-panel [fileList]="fileList" [selectedFile]="selectedFile"
+      (fileSelected)="onFileSelectedForPreview($event)">
+    </ds-file-preview-panel>
+  </div>
+</div>
