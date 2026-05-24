@@ -3,5 +3,13 @@
   "menu.section.browse_global": "Browse DSpace",
 
   // DSpace default: "DSpace Angular :: "
-  "repository.title.prefix": "DSpace :: ",
+  "repository.title.prefix": "NALA :: ",
+  "repository.title": "NALA",
+
+  // Browser tab titles
+  "home.title": "Home",
+  "login.title": "Login",
+  "search.title": "Search",
+  "statistics.title": "Statistics",
+  "admin.dashboard.title": "Analytics Dashboard",
 }

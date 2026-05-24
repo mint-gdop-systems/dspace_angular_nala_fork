@@ -7,20 +7,36 @@
     position: relative !important;
     z-index: 1050 !important;
     overflow: visible !important;
+    height: 64px !important;
+    min-height: 64px !important;
+    max-height: 64px !important;
+    display: flex !important;
+    align-items: center !important;
+  }
+
+  header > .container-fluid {
+    height: 100% !important;
+    display: flex !important;
+    align-items: center !important;
   }
 
   .navbar-brand {
-    margin: 0.5rem 0 !important;
+    margin: 0 !important;
     padding: 0 !important;
+    display: flex !important;
+    align-items: center !important;
   }
 
   .site-logo {
     color: #C4C8CC !important;
-    font-size: 1.5rem !important;
+    font-size: 1.3rem !important;
     font-weight: 500 !important;
     letter-spacing: -0.5px !important;
     text-transform: uppercase !important;
     text-decoration: none !important;
+    display: flex !important;
+    align-items: center !important;
+    line-height: 1 !important;
   }
 
   .header-link {
