@@ -1,6 +1,6 @@
 rest:
   ssl: false
-  host: localhost
+  host: 172.21.82.2
   port: 8080
   nameSpace: /server
 
@@ -26,3 +26,9 @@ themes:
         attributes:
           rel: manifest
           href: assets/dspace/images/favicons/manifest.webmanifest
+
+ui:
+  ssl: false
+  host: 0.0.0.0
+  port: 4000
+  nameSpace: /

@@ -1,4 +1,4 @@
-import { HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import {
@@ -40,6 +40,7 @@ import { WorkspaceitemSectionsObject } from '../core/submission/models/workspace
 import { SubmissionJsonPatchOperationsService } from '../core/submission/submission-json-patch-operations.service';
 import { SubmissionRestService } from '../core/submission/submission-rest.service';
 import { SubmissionScopeType } from '../core/submission/submission-scope-type';
+import { ClaimedTaskDataService } from '../core/tasks/claimed-task-data.service';
 import {
   hasValue,
   isEmpty,
@@ -129,7 +130,9 @@ export class SubmissionService {
               protected translate: TranslateService,
               protected searchService: SearchService,
               protected requestService: RequestService,
-              protected jsonPatchOperationService: SubmissionJsonPatchOperationsService) {
+              protected jsonPatchOperationService: SubmissionJsonPatchOperationsService,
+              protected http: HttpClient,
+              protected claimedTaskService: ClaimedTaskDataService) {
   }
 
   /**
@@ -286,6 +289,32 @@ export class SubmissionService {
     this.store.dispatch(new SaveForLaterSubmissionFormAction(submissionId));
   }
 
+  /**
+   * Dispatch a submission approval action for workflow items.
+   * Submits task approval using the ClaimedTaskDataService.
+   */
+
+public dispatchApprove(claimedTaskId: string): Observable<boolean> {
+  if (!claimedTaskId) {
+    console.error('claimedTaskId is required');
+    this.notificationsService.error('Error', 'Task ID is required');
+    return of(false);
+  }
+
+  const body = { submit_approve: 'true' };
+
+  return this.claimedTaskService.submitTask(claimedTaskId, body).pipe(
+    map(() => {
+      this.notificationsService.success('Success', 'The workflow item was approved successfully');
+      return true;
+    }),
+    catchError((err) => {
+      console.error('Error approving task:', err);
+      this.notificationsService.error('Approval Failed', 'The task could not be approved');
+      return of(false);
+    }),
+  );
+}
   /**
    * Dispatch a new [SaveSubmissionSectionFormAction]
    *

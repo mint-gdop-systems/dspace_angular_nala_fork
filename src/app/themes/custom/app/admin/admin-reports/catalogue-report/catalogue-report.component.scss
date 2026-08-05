@@ -1,0 +1,253 @@
+.catalogue-report-container {
+  padding: 24px;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.page-title {
+  font-size: 24px;
+  font-weight: 500;
+  margin-bottom: 24px;
+  color: #333;
+}
+
+// Filter Section
+.filter-section {
+  margin-bottom: 24px;
+}
+
+.date-range-form {
+  width: 100%;
+}
+
+.date-pickers-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: flex-end;
+
+  .date-field {
+    flex: 1;
+    min-width: 200px;
+  }
+
+  button {
+    height: 48px;
+    min-width: 120px;
+  }
+}
+
+// Error Message
+.error-message {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background-color: #f44336;
+  color: white;
+  border-radius: 4px;
+  margin-bottom: 16px;
+
+  mat-icon {
+    font-size: 20px;
+    height: 20px;
+    width: 20px;
+  }
+
+  span {
+    flex: 1;
+  }
+}
+
+// Summary Section
+.summary-section {
+  margin-bottom: 24px;
+  background-color: #e3f2fd;
+}
+
+.summary-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  align-items: center;
+
+  .date-range-info,
+  .results-count {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    mat-icon {
+      color: #1976d2;
+    }
+  }
+
+  .date-range-text {
+    font-weight: 500;
+    color: #1976d2;
+  }
+
+  .count-text {
+    font-weight: 500;
+    color: #333;
+  }
+}
+
+// Results Section
+.results-section {
+  margin-bottom: 24px;
+  overflow: hidden;
+}
+
+.table-container {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.results-table {
+  width: 100%;
+  min-width: 1200px;
+
+  th {
+    font-weight: 600;
+    color: #333;
+    background-color: #f5f5f5;
+  }
+
+  td {
+    color: #666;
+  }
+
+  .col-index {
+    width: 50px;
+    text-align: center;
+  }
+
+  .col-record-type {
+    width: 120px;
+  }
+
+  .col-author {
+    width: 150px;
+  }
+
+  .col-title {
+    width: 200px;
+  }
+
+  .col-place {
+    width: 120px;
+  }
+
+  .col-publisher {
+    width: 120px;
+  }
+
+  .col-pub-date {
+    width: 100px;
+  }
+
+  .col-classification {
+    width: 120px;
+  }
+
+  .col-location {
+    width: 100px;
+  }
+
+  .col-copies {
+    width: 80px;
+    text-align: center;
+  }
+
+  .col-created {
+    width: 120px;
+  }
+
+  .col-edited {
+    width: 120px;
+  }
+}
+
+// Empty State
+.empty-state {
+  text-align: center;
+  padding: 48px 24px;
+  margin-bottom: 24px;
+
+  .empty-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+
+    mat-icon {
+      font-size: 64px;
+      height: 64px;
+      width: 64px;
+      color: #ccc;
+    }
+
+    p {
+      font-size: 16px;
+      color: #666;
+      margin: 0;
+    }
+  }
+}
+
+// Export Section
+.export-section {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 16px;
+
+  button {
+    min-width: 160px;
+  }
+}
+
+// Responsive Design
+@media (max-width: 768px) {
+  .catalogue-report-container {
+    padding: 16px;
+  }
+
+  .page-title {
+    font-size: 20px;
+  }
+
+  .date-pickers-row {
+    flex-direction: column;
+
+    .date-field {
+      width: 100%;
+    }
+
+    button {
+      width: 100%;
+    }
+  }
+
+  .summary-content {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .export-section {
+    justify-content: stretch;
+
+    button {
+      width: 100%;
+    }
+  }
+}
+
+// Loading State
+:host ::ng-deep {
+  ds-loading {
+    display: block;
+    padding: 48px;
+    text-align: center;
+  }
+}

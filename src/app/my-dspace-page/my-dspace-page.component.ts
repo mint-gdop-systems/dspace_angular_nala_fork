@@ -1,4 +1,4 @@
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, NgIf } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -6,7 +6,12 @@ import {
   OnInit,
 } from '@angular/core';
 import { Observable } from 'rxjs';
-import { take } from 'rxjs/operators';
+import {
+  map,
+  take,
+} from 'rxjs/operators';
+
+import { BulkApproveComponent } from '../admin/admin-workflow-page/bulk-approve/bulk-approve.component';
 
 import { MyDSpaceResponseParsingService } from '../core/data/mydspace-response-parsing.service';
 import { MyDSpaceRequest } from '../core/data/request.models';
@@ -21,7 +26,9 @@ import { ThemedSearchComponent } from '../shared/search/themed-search.component'
 import {
   MyDSpaceConfigurationService,
   SEARCH_CONFIG_SERVICE,
+  MyDSpaceConfigurationToContextMap,
 } from './my-dspace-configuration.service';
+import { MyDSpaceConfigurationValueType } from './my-dspace-configuration-value-type';
 import { MyDSpaceNewSubmissionComponent } from './my-dspace-new-submission/my-dspace-new-submission.component';
 import { MyDspaceQaEventsNotificationsComponent } from './my-dspace-qa-events-notifications/my-dspace-qa-events-notifications.component';
 
@@ -43,6 +50,7 @@ export const MYDSPACE_ROUTE = '/mydspace';
   ],
   imports: [
     AsyncPipe,
+    BulkApproveComponent,
     MyDSpaceNewSubmissionComponent,
     MyDspaceQaEventsNotificationsComponent,
     RoleDirective,
@@ -58,12 +66,12 @@ export class MyDSpacePageComponent implements OnInit {
   configurationList$: Observable<SearchConfigurationOption[]>;
 
   /**
-   * The start context to use in the search: workspace or workflow
+   * The current context to use
    */
   context: Context;
 
   /**
-   * The start configuration to use in the search: workspace or workflow
+   * The current configuration to use
    */
   configuration: string;
 
@@ -85,23 +93,22 @@ export class MyDSpacePageComponent implements OnInit {
   /**
    * Initialize available configuration list
    *
-   * Listening to changes in the paginated search options
-   * If something changes, update the search results
-   *
-   * Listen to changes in the scope
-   * If something changes, update the list of scopes for the dropdown
-   *
-   * Listen to changes in the configuration
-   * If something changes, update the current context
+   * Subscribe to configuration changes from the search service to reactively
+   * update the current configuration and context, which allows switching between
+   * the normal search view and the bulk approve view.
    */
   ngOnInit(): void {
     this.configurationList$ = this.searchConfigService.getAvailableConfigurationOptions();
 
-    this.configurationList$.pipe(take(1)).subscribe((configurationList: SearchConfigurationOption[]) => {
-      this.configuration = configurationList[0].value;
-      this.context = configurationList[0].context;
-    });
-
+    // Reactively track configuration changes from the URL/selector
+    this.searchConfigService.getCurrentConfiguration('workflow').pipe(
+      take(1),
+      map((currentConfig: string) => {
+        this.configuration = currentConfig;
+        const mappedContext = MyDSpaceConfigurationToContextMap.get(currentConfig as MyDSpaceConfigurationValueType);
+        this.context = mappedContext || Context.AdminWorkflowSearch;
+      }),
+    ).subscribe();
   }
 
 }

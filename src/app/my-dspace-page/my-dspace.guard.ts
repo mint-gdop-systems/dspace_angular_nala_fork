@@ -43,7 +43,7 @@ export const myDSpaceGuard: CanActivateFn = (
  *
  */
 function validateConfigurationParam(router: Router, configuration: string, configurationList: MyDSpaceConfigurationValueType[]): boolean {
-  const configurationDefault: string = configurationList[0];
+  const configurationDefault: string = MyDSpaceConfigurationValueType.Workflow;
   if (isEmpty(configuration) || !configurationList.includes(configuration as MyDSpaceConfigurationValueType)) {
     // If configuration param is empty or is not included in available configurations redirect to a default configuration value
     const navigationExtras: NavigationExtras = {

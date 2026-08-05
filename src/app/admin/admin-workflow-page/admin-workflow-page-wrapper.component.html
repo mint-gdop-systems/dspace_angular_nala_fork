@@ -1,0 +1,11 @@
+<div class="container">
+  <ul ngbNav #nav="ngbNav" class="nav-tabs" [(activeId)]="activeTab">
+    <li [ngbNavItem]="'workflow'">
+      <a ngbNavLink>{{ 'admin.workflow.tab.workflow' | translate }}</a>
+      <ng-template ngbNavContent>
+        <ds-configuration-search-page configuration="supervision" [context]="context"></ds-configuration-search-page>
+      </ng-template>
+    </li>
+  </ul>
+  <div [ngbNavOutlet]="nav" class="mt-3"></div>
+</div>

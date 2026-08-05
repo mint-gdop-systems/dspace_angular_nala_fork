@@ -1,0 +1,126 @@
+﻿<div class="container">
+  <div class="row">
+    <div class="col-12">
+
+      <div class="mt-3">
+        <div class="card filter-section mb-3">
+          <div class="card-body">
+            <form class="row g-2 align-items-end">
+              <div class="col-md-3">
+                <label class="form-label small">From (Made available date)</label>
+                <input class="form-control" type="date" [formControl]="fromDateControl">
+              </div>
+              <div class="col-md-3">
+                <label class="form-label small">To (Made available date)</label>
+                <input class="form-control" type="date" [formControl]="toDateControl">
+              </div>
+              <div class="col-md-3">
+                <button type="button" class="btn btn-primary" (click)="generateReport()" [disabled]="loading$ | async">
+                  Generate Report
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+      <ng-container *ngIf="loading$ | async">
+        <ds-loading></ds-loading>
+      </ng-container>
+
+      <div class="mt-3 mb-3" *ngIf="!(loading$ | async) && (resultsCount$ | async) > 0">
+        <span>Total Records: {{ resultsCount$ | async }}</span>
+      </div>
+
+      <ng-container *ngIf="!(loading$ | async) && (resultsCount$ | async) > 0">
+        <div class="card results-section">
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-striped align-middle">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Record Type</th>
+                    <th scope="col">Author</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Place of Publication</th>
+                    <th scope="col">Publisher</th>
+                    <th scope="col">Publication Date</th>
+                    <th scope="col">Classification No</th>
+                    <th scope="col">Location</th>
+                    <th scope="col">No of Copies</th>
+                    <th scope="col">ISBN</th>
+                    <th scope="col">Public</th>
+                    <th scope="col">Created Date</th>
+                    <th scope="col">Last Edited Date</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of results; let i = index">
+                    <td>{{ item.index + 1 }}</td>
+                    <td>{{ item.recordType }}</td>
+                    <td>{{ item.author }}</td>
+                    <td>{{ item.title }}</td>
+                    <td>{{ item.placeOfPublication }}</td>
+                    <td>{{ item.publisher }}</td>
+                    <td>{{ item.publicationDate }}</td>
+                    <td>{{ item.classificationNo }}</td>
+                    <td>{{ item.location }}</td>
+                    <td>{{ item.noOfCopies }}</td>
+                    <td>{{ item.isbn }}</td>
+                    <td>{{ item.publicAccess }}</td>
+                    <td>{{ item.createdDate }}</td>
+                    <td>{{ item.lastEditedDate }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <ng-container *ngIf="totalPages > 1">
+              <div class="d-flex justify-content-between align-items-center mt-3">
+                <small class="text-muted">
+                  Page {{ pageIndex + 1 }} of {{ totalPages }} • Showing {{ results.length }} of {{ resultsCount$ | async }} records
+                </small>
+
+                <nav aria-label="Catalogue report pagination">
+                  <ul class="pagination mb-0">
+                    <li class="page-item" [class.disabled]="!hasPreviousPage">
+                      <button type="button" class="page-link" (click)="changePage(pageIndex - 1)" [disabled]="!hasPreviousPage">
+                        Previous
+                      </button>
+                    </li>
+                    <li class="page-item" *ngFor="let page of pageNumbers" [class.active]="page === pageIndex">
+                      <button type="button" class="page-link" (click)="changePage(page)">
+                        {{ page + 1 }}
+                      </button>
+                    </li>
+                    <li class="page-item" [class.disabled]="!hasNextPage">
+                      <button type="button" class="page-link" (click)="changePage(pageIndex + 1)" [disabled]="!hasNextPage">
+                        Next
+                      </button>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="!(loading$ | async) && (resultsCount$ | async) === 0">
+        <div class="card empty-state mt-3">
+          <div class="card-body text-center">
+            <p class="mb-0">No results found</p>
+          </div>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="(resultsCount$ | async) > 0">
+        <div class="export-section mt-3">
+          <button type="button" class="btn btn-outline-secondary" (click)="exportToExcel()" [disabled]="!(exportEnabled$ | async)">
+            Export to Excel
+          </button>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>

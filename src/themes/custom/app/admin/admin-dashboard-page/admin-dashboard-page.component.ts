@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { RouterModule, ActivatedRoute } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { combineLatest, Observable, of } from 'rxjs';
 import { map, shareReplay, startWith, switchMap, take } from 'rxjs/operators';
@@ -25,6 +25,7 @@ import { DSpaceObjectType } from '../../../../../app/core/shared/dspace-object-t
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 import { AuthorizationDataService } from '../../../../../app/core/data/feature-authorization/authorization-data.service';
 import { FeatureID } from '../../../../../app/core/data/feature-authorization/feature-id';
+import { CatalogueReportComponent } from 'src/app/themes/custom/app/admin/admin-reports/catalogue-report/catalogue-report.component';
 
 @Component({
     selector: 'ds-admin-dashboard-page',
@@ -36,6 +37,7 @@ import { FeatureID } from '../../../../../app/core/data/feature-authorization/fe
         RouterModule,
         TranslateModule,
         UserDashboardComponent,
+        CatalogueReportComponent,
     ],
 })
 export class AdminDashboardPageComponent implements OnInit {
@@ -46,7 +48,7 @@ export class AdminDashboardPageComponent implements OnInit {
     collectionsStats$: Observable<any[]>;
 
     isAdmin$: Observable<boolean>;
-    activeTab: 'admin' | 'user' = 'admin';
+    activeTab: 'admin' | 'user' | 'catalogue' = 'admin';
 
     constructor(
         protected searchService: SearchService,
@@ -58,6 +60,7 @@ export class AdminDashboardPageComponent implements OnInit {
         protected collectionDataService: CollectionDataService,
         protected halService: HALEndpointService,
         protected authorizationService: AuthorizationDataService,
+        protected route: ActivatedRoute,
     ) { }
 
     ngOnInit(): void {
@@ -68,6 +71,16 @@ export class AdminDashboardPageComponent implements OnInit {
         this.isAdmin$.pipe(take(1)).subscribe((isAdmin) => {
             if (!isAdmin) {
                 this.activeTab = 'user';
+            }
+        });
+
+        this.route.queryParams.subscribe((params) => {
+            if (params['tab'] === 'user') {
+                this.activeTab = 'user';
+            } else if (params['tab'] === 'catalogue') {
+                this.activeTab = 'catalogue';
+            } else {
+                this.activeTab = 'admin';
             }
         });
 

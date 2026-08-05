@@ -38,6 +38,7 @@ export const MyDSpaceConfigurationToContextMap = new Map([
   [MyDSpaceConfigurationValueType.Workspace, Context.Workspace],
   [MyDSpaceConfigurationValueType.SupervisedItems, Context.SupervisedItems],
   [MyDSpaceConfigurationValueType.Workflow, Context.Workflow],
+  [MyDSpaceConfigurationValueType.BulkApprove, Context.AdminWorkflowSearch],
 ]);
 
 export const SEARCH_CONFIG_SERVICE: InjectionToken<SearchConfigurationService> = new InjectionToken<SearchConfigurationService>('searchConfigurationService');
@@ -64,7 +65,7 @@ export class MyDSpaceConfigurationService extends SearchConfigurationService {
   /**
    * Default configuration parameter setting
    */
-  protected defaultConfiguration = 'workspace';
+  protected defaultConfiguration = 'workflow';
 
   /**
    * Default scope setting
@@ -127,6 +128,9 @@ export class MyDSpaceConfigurationService extends SearchConfigurationService {
         if (isController || isAdmin) {
           availableConf.push(MyDSpaceConfigurationValueType.SupervisedItems);
           availableConf.push(MyDSpaceConfigurationValueType.Workflow);
+        }
+        if (isAdmin) {
+          availableConf.push(MyDSpaceConfigurationValueType.BulkApprove);
         }
         return availableConf;
       }));

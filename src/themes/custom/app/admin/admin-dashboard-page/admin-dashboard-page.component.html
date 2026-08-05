@@ -1,6 +1,10 @@
 <div class="container">
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1 id="admin-dashboard-title">{{ (activeTab === 'admin' ? 'admin.dashboard.title' : 'admin.dashboard.user-dashboard') | translate }}</h1>
+        <h1 id="admin-dashboard-title">
+            <span *ngIf="activeTab === 'admin'">{{ 'admin.dashboard.title' | translate }}</span>
+            <span *ngIf="activeTab === 'user'">{{ 'admin.dashboard.user-dashboard' | translate }}</span>
+            <span *ngIf="activeTab === 'catalogue'">Report</span>
+        </h1>
         <button *ngIf="activeTab === 'admin'" class="btn btn-primary" (click)="refresh()" id="admin-dashboard-refresh">
             <i class="fas fa-sync-alt mr-1"></i> {{ 'admin.dashboard.refresh' | translate }}
         </button>
@@ -9,13 +13,18 @@
     <!-- Tabs Navigation visible to Admin users -->
     <ul class="nav nav-tabs mb-4" *ngIf="(isAdmin$ | async)">
         <li class="nav-item">
-            <a class="nav-link" [class.active]="activeTab === 'admin'" (click)="activeTab = 'admin'" href="javascript:void(0)">
-                <i class="fas fa-user-shield mr-1"></i> {{ 'admin.dashboard.admin-dashboard' | translate }}
+            <a class="nav-link" [class.active]="activeTab === 'admin'" (click)="activeTab = 'admin'" [routerLink]="'/statistics/admin-dashboard'" [queryParams]="{tab: 'admin'}">
+                <i class="fas fa-user-shield mr-1"></i> System Statistics
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" [class.active]="activeTab === 'user'" (click)="activeTab = 'user'" href="javascript:void(0)">
-                <i class="fas fa-user mr-1"></i> {{ 'admin.dashboard.user-dashboard' | translate }}
+            <a class="nav-link" [class.active]="activeTab === 'user'" (click)="activeTab = 'user'" [routerLink]="'/statistics/admin-dashboard'" [queryParams]="{tab: 'user'}">
+                <i class="fas fa-user mr-1"></i> User Statistics
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" [class.active]="activeTab === 'catalogue'" (click)="activeTab = 'catalogue'" [routerLink]="'/statistics/admin-dashboard'" [queryParams]="{tab: 'catalogue'}">
+                Catalogue Report
             </a>
         </li>
     </ul>
@@ -69,6 +78,8 @@
             </div>
         </div>
 
+
+
         <div class="row">
             <!-- Collection Statistics Table -->
             <div class="col-lg-12 mb-4">
@@ -115,5 +126,10 @@
     <!-- User Dashboard Content -->
     <div *ngIf="activeTab === 'user'">
         <ds-user-dashboard></ds-user-dashboard>
+    </div>
+
+    <!-- Catalogue Report Content -->
+    <div *ngIf="activeTab === 'catalogue'">
+        <ds-catalogue-report></ds-catalogue-report>
     </div>
 </div>

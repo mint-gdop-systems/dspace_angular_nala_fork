@@ -3,6 +3,8 @@ import {
   ChangeDetectionStrategy,
   Component,
 } from '@angular/core';
+import { NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
+import { TranslateModule } from '@ngx-translate/core';
 
 import {
   MyDSpaceConfigurationService,
@@ -20,8 +22,7 @@ import { ThemedSearchComponent } from '../../../../app/shared/search/themed-sear
   selector: 'ds-themed-my-dspace-page',
   // styleUrls: ['./my-dspace-page.component.scss'],
   styleUrls: ['../../../../app/my-dspace-page/my-dspace-page.component.scss'],
-  // templateUrl: './my-dspace-page.component.html',
-  templateUrl: '../../../../app/my-dspace-page/my-dspace-page.component.html',
+  templateUrl: './my-dspace-page.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [pushInOut],
   providers: [
@@ -32,6 +33,8 @@ import { ThemedSearchComponent } from '../../../../app/shared/search/themed-sear
   ],
   imports: [
     AsyncPipe,
+    NgbNavModule,
+    TranslateModule,
     MyDSpaceNewSubmissionComponent,
     MyDspaceQaEventsNotificationsComponent,
     RoleDirective,

@@ -33,6 +33,7 @@ import { StatisticsMenuProvider } from './shared/menu/providers/statistics.menu'
 import { SystemWideAlertMenuProvider } from './shared/menu/providers/system-wide-alert.menu';
 import { WithdrawnReinstateItemMenuProvider } from './shared/menu/providers/withdrawn-reinstate-item.menu';
 import { WorkflowMenuProvider } from './shared/menu/providers/workflow.menu';
+import { AboutMenuProvider } from '../themes/custom/app/shared/menu/providers/about.menu';
 import { AdminDashboardMenuProvider } from '../themes/custom/app/shared/menu/providers/admin-dashboard.menu';
 
 /**
@@ -56,6 +57,7 @@ export const MENUS = buildMenuStructure({
     CommunityListMenuProvider,
     BrowseMenuProvider,
     StatisticsMenuProvider,
+    AboutMenuProvider,
   ],
   [MenuID.ADMIN]: [
     NewMenuProvider,

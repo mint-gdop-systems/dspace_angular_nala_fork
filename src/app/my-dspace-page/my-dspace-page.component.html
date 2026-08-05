@@ -5,10 +5,14 @@
 </div>
 
 @if (configuration && context) {
-  <ds-search
-    [configuration]="configuration"
-    [configurationList]="(configurationList$ | async)"
-    [context]="context"
-    [viewModeList]="viewModeList"
-  ></ds-search>
+  @if (configuration === 'bulk_approve') {
+    <ds-bulk-approve></ds-bulk-approve>
+  } @else {
+    <ds-search
+      [configuration]="configuration"
+      [configurationList]="(configurationList$ | async)"
+      [context]="context"
+      [viewModeList]="viewModeList"
+    ></ds-search>
+  }
 }

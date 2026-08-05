@@ -67,6 +67,16 @@ export class CreateReportMenuProvider extends AbstractExpandableMenuProvider {
             } as LinkMenuItemModel,
             icon: 'user-check',
           },
+          /* Catalogue Report by Date Range */
+          {
+            visible: isSiteAdmin && reportEnabled,
+            model: {
+              type: MenuItemType.LINK,
+              text: 'menu.section.reports.catalogue',
+              link: '/admin/reports/catalogue-report',
+            } as LinkMenuItemModel,
+            icon: 'user-check',
+          },
         ];
       }));
   }

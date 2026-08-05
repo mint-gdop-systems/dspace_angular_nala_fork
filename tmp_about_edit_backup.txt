@@ -1,0 +1,1 @@
+backup of about.component.ts before edit

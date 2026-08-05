@@ -3,6 +3,7 @@ import { Route } from '@angular/router';
 import { i18nBreadcrumbResolver } from '../../core/breadcrumbs/i18n-breadcrumb.resolver';
 import { FilteredCollectionsComponent } from './filtered-collections/filtered-collections.component';
 import { FilteredItemsComponent } from './filtered-items/filtered-items.component';
+import { CatalogueReportComponent } from '../../themes/custom/app/admin/admin-reports/catalogue-report/catalogue-report.component';
 
 export const ROUTES: Route[] = [
   {
@@ -26,5 +27,12 @@ export const ROUTES: Route[] = [
         component: FilteredItemsComponent,
       },
     ],
+  },
+  {
+    path: 'catalogue-report',
+    resolve: { breadcrumb: i18nBreadcrumbResolver },
+    data: { title: 'admin.reports.catalogue.title', breadcrumbKey: 'admin.reports.catalogue' },
+    redirectTo: '/admin?tab=catalogue',
+    pathMatch: 'full',
   },
 ];

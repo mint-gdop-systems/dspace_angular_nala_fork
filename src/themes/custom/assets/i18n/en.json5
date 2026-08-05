@@ -3,8 +3,8 @@
   "menu.section.browse_global": "Browse DSpace",
 
   // DSpace default: "DSpace Angular :: "
-  "repository.title.prefix": "NALA :: ",
-  "repository.title": "NALA",
+  "repository.title.prefix": "EALS :: ",
+  "repository.title": "EALS",
 
   // Browser tab titles
   "home.title": "Home",

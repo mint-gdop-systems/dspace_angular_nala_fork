@@ -1,0 +1,25 @@
+<div class="container">
+  <ds-suggestions-notification></ds-suggestions-notification>
+  <ds-my-dspace-qa-events-notifications></ds-my-dspace-qa-events-notifications>
+  <ds-my-dspace-new-submission *dsShowOnlyForRole="[roleTypeEnum.Submitter]"></ds-my-dspace-new-submission>
+</div>
+
+@if (configuration && context) {
+@if (configuration === 'workflow') {
+    <!-- Show workflow tasks -->
+    <ds-search
+      [configuration]="configuration"
+      [configurationList]="(configurationList$ | async)"
+      [context]="context"
+      [viewModeList]="viewModeList"
+    ></ds-search>
+  } @else {
+    <!-- No tabs for other configurations (workspace, supervised items) -->
+    <ds-search
+      [configuration]="configuration"
+      [configurationList]="(configurationList$ | async)"
+      [context]="context"
+      [viewModeList]="viewModeList"
+    ></ds-search>
+  }
+}
